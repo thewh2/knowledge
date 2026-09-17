@@ -1,0 +1,4 @@
+﻿User-agent: *
+Allow: /
+
+Sitemap: https://knowledge.chandankumarthakur.com.np/sitemap.xml
