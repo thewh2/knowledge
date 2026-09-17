@@ -4,7 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
   <title>Day 4: OS Command Execution, Burp Suite Interception & CSRF Exploitation | BugXploit Workshop | The WH2</title>
   <meta name="description"
@@ -12,6 +14,9 @@
   <meta name="keywords"
     content="Ethical Hacking Day 4, BugXploit Workshop, OS Command Injection, Command Execution DVWA, Burp Suite proxy, HTTP request tampering, CSRF, Cross-Site Request Forgery, Change GET to POST Burp, csrfshark, anti-CSRF token bypass, DVWA security levels, PHPIDS, Birendra Sah, Bishal Shrestha, Chandan Kumar Thakur, The WH2, Penetration Testing Nepal, Koteshwor Kathmandu">
   <meta name="author" content="Chandan Kumar Thakur (The WH2)">
+  <meta name="creator" content="Chandan Kumar Thakur">
+  <meta name="publisher" content="The WH2">
+  <meta name="developer" content="Chandan Kumar Thakur (The WH2)">
 
   <link rel="canonical"
     href="https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day4/">
@@ -21,7 +26,7 @@
     content="Day 4: OS Command Execution, Burp Suite Interception & CSRF Exploitation | BugXploit Workshop">
   <meta property="og:description"
     content="Exhaustive Day 4 penetration testing lab notes: OS Command Injection on DVWA (whoami, pwd, ls), Burp Suite request modification, switching DVWA security levels, CSRF vulnerability exploitation, GET to POST conversion, and csrfshark.github.io PoC generation.">
-  <meta property="og:image" content="https://www.chandankumarthakur.com.np/assets/img/wh2.jpg">
+  <meta property="og:image" content="https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg">
   <meta property="og:url"
     content="https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day4/">
   <meta property="og:type" content="article">
@@ -32,7 +37,7 @@
   <meta name="twitter:title" content="Day 4: Command Execution, Burp Suite & CSRF Deep Dive | BugXploit">
   <meta name="twitter:description"
     content="Detailed Day 4 penetration testing lab notes: OS Command Execution, Burp Suite HTTP manipulation, CSRF vulnerabilities, and defensive remediations. Documented by The WH2.">
-  <meta name="twitter:image" content="https://www.chandankumarthakur.com.np/assets/img/wh2.jpg">
+  <meta name="twitter:image" content="https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg">
 
   <!-- JSON-LD TechArticle Schema for Search Engines and AI Crawlers -->
   <script type="application/ld+json">
@@ -71,7 +76,14 @@
       "@type": "Person",
       "name": "Chandan Kumar Thakur",
       "alternateName": "The WH2",
-      "url": "https://www.chandankumarthakur.com.np/"
+      "jobTitle": "AI Architect & Cybersecurity Researcher",
+      "url": "https://www.chandankumarthakur.com.np/",
+      "sameAs": [
+        "https://www.chandankumarthakur.com.np/",
+        "https://www.linkedin.com/in/thewh2/",
+        "https://github.com/thewh2",
+        "https://www.youtube.com/@thewh2"
+      ]
     },
     "contributor": [
       {
@@ -1157,4 +1169,5 @@ $output = shell_exec( "ping -c 4 " . $clean_ip );</code></pre>
 </body>
 
 </html>
+
 

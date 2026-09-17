@@ -1,69 +1,148 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- ================= Knowledge Hub Home ================= -->
   <url>
     <loc>https://knowledge.chandankumarthakur.com.np/</loc>
     <lastmod>2026-09-17</lastmod>
     <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <priority>1.00</priority>
+    <image:image>
+      <image:loc>https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg</image:loc>
+      <image:title>The WH2 Knowledge Hub &amp; Offensive Security Workshops</image:title>
+      <image:caption>Official technical documentation repository by Chandan Kumar Thakur</image:caption>
+    </image:image>
   </url>
+
+  <!-- ================= BugXploit Workshop Syllabus ================= -->
   <url>
     <loc>https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/</loc>
     <lastmod>2026-09-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg</image:loc>
+      <image:title>Ethical Hacking and Penetration Testing 2-Week Workshop at BugXploit Kathmandu</image:title>
+      <image:caption>2-week offensive security training syllabus, methodologies, and labs</image:caption>
+    </image:image>
   </url>
+
+  <!-- ================= Workshop Day 1 ================= -->
   <url>
     <loc>https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day1/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg</image:loc>
+      <image:title>Day 1: Lab Foundations, VirtualBox, Metasploitable 2 &amp; Bugcrowd</image:title>
+      <image:caption>BugXploit workshop Day 1 lab report and Kali Linux setup</image:caption>
+    </image:image>
   </url>
+
+  <!-- ================= Workshop Day 2 ================= -->
   <url>
     <loc>https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day2/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg</image:loc>
+      <image:title>Day 2: Service Enumeration, VSFTPD CVE-2011-2523 &amp; Metasploit SSH Brute-Force</image:title>
+      <image:caption>BugXploit workshop Day 2 lab report</image:caption>
+    </image:image>
   </url>
+
+  <!-- ================= Workshop Day 3 ================= -->
   <url>
     <loc>https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day3/</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg</image:loc>
+      <image:title>Day 3: Active vs Passive Reconnaissance, Bugcrowd Tesla Scope &amp; OSINT Tooling</image:title>
+      <image:caption>BugXploit workshop Day 3 lab report</image:caption>
+    </image:image>
   </url>
+
+  <!-- ================= Workshop Day 4 ================= -->
   <url>
     <loc>https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day4/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg</image:loc>
+      <image:title>Day 4: OS Command Injection, Burp Suite Interception &amp; CSRF Exploitation</image:title>
+      <image:caption>BugXploit workshop Day 4 lab report</image:caption>
+    </image:image>
   </url>
+
+  <!-- ================= Workshop Day 5 ================= -->
   <url>
     <loc>https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day5/</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg</image:loc>
+      <image:title>Day 5: Burp Intruder Brute Force, SQLMap Database Dumping &amp; XSS Cookie Stealing</image:title>
+      <image:caption>BugXploit workshop Day 5 lab report</image:caption>
+    </image:image>
   </url>
+
+  <!-- ================= Workshop Day 6 ================= -->
   <url>
     <loc>https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day6/</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg</image:loc>
+      <image:title>Day 6: Automated Vulnerability Scanning with Nuclei &amp; GitHub Secret Reconnaissance</image:title>
+      <image:caption>BugXploit workshop Day 6 lab report</image:caption>
+    </image:image>
   </url>
+
+  <!-- ================= Workshop Day 7 ================= -->
   <url>
     <loc>https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day7/</loc>
     <lastmod>2026-09-15</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg</image:loc>
+      <image:title>Day 7: Android Penetration Testing, Static Analysis with MobSF &amp; JADX Decompilation</image:title>
+      <image:caption>BugXploit workshop Day 7 lab report</image:caption>
+    </image:image>
   </url>
+
+  <!-- ================= Workshop Day 8 ================= -->
   <url>
     <loc>https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day8/</loc>
     <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg</image:loc>
+      <image:title>Day 8: PortSwigger Authentication Deep Dive &amp; Password Reset Poisoning</image:title>
+      <image:caption>BugXploit workshop Day 8 lab report</image:caption>
+    </image:image>
   </url>
+
+  <!-- ================= Workshop Day 9 ================= -->
   <url>
     <loc>https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day9/</loc>
     <lastmod>2026-09-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg</image:loc>
+      <image:title>Day 9: Web LLM Attacks, Prompt Injection &amp; Excessive Agency</image:title>
+      <image:caption>BugXploit workshop Day 9 lab report</image:caption>
+    </image:image>
   </url>
+
 </urlset>

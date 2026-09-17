@@ -1,4 +1,47 @@
-﻿User-agent: *
+﻿# Robots.txt for The WH2 Knowledge Hub (knowledge.chandankumarthakur.com.np)
+# Allows full indexing for all major web crawlers and AI search engines
+
+User-agent: *
 Allow: /
 
+# Major Search Engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /assets/img/
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# AI Assistants & LLM Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemaps & LLM Context Feeds
 Sitemap: https://knowledge.chandankumarthakur.com.np/sitemap.xml
+LLMs-Txt: https://knowledge.chandankumarthakur.com.np/llms.txt

@@ -4,7 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 
   <title>Ethical Hacking & Penetration Testing Workshop | BugXploit | The WH2</title>
   <meta name="description"
@@ -12,69 +14,126 @@
   <meta name="keywords"
     content="Ethical Hacking, Penetration Testing, BugXploit, BugXploit Workshop, Koteshwor, Kathmandu, Nepal, Ethical Hacking Nepal, Penetration Testing Course Kathmandu, BugXploit Koteshwor, Birendra Sah, Bishal Shrestha, The WH2, Chandan Kumar Thakur, Cybersecurity Training, Kali Linux, Metasploitable, Nmap scanning, offensive security workshop, CEH Nepal, OSCP prep Nepal">
   <meta name="author" content="Chandan Kumar Thakur (The WH2)">
+  <meta name="creator" content="Chandan Kumar Thakur">
+  <meta name="publisher" content="The WH2">
+  <meta name="developer" content="Chandan Kumar Thakur (The WH2)">
+  <meta name="copyright" content="The WH2 2026">
+  <meta name="rating" content="General">
+  <meta name="revisit-after" content="2 days">
 
   <link rel="canonical" href="https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/">
 
   <!-- Open Graph / Meta Consistency -->
-  <meta property="og:title" content="Ethical Hacking & Penetration Testing Workshop | BugXploit | The WH2">
-  <meta property="og:description"
-    content="Official 2-week Ethical Hacking & Penetration Testing workshop log at BugXploit (Koteshwor, Kathmandu). Real-world methodology, labs, and tools documented by The WH2.">
-  <meta property="og:image" content="https://www.chandankumarthakur.com.np/assets/img/wh2.jpg">
-  <meta property="og:url"
-    content="https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/">
+  <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="The WH2 Knowledge Hub">
+  <meta property="og:title" content="BugXploit 2-Week Ethical Hacking & Penetration Testing Workshop | The WH2">
+  <meta property="og:description"
+    content="Official 2-week hands-on offensive security, network penetration testing, and web exploitation workshop log at BugXploit (Koteshwor, Kathmandu). Documented by Chandan Kumar Thakur (The WH2).">
+  <meta property="og:image" content="https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BugXploit Ethical Hacking Workshop Syllabus">
+  <meta property="og:url" content="https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/">
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ethical Hacking & Penetration Testing Workshop | BugXploit">
+  <meta name="twitter:site" content="@thewh2">
+  <meta name="twitter:creator" content="@thewh2">
+  <meta name="twitter:title" content="BugXploit Ethical Hacking & Penetration Testing Workshop | The WH2">
   <meta name="twitter:description"
-    content="Day-by-day practical cybersecurity workshop log at BugXploit, Koteshwor. Documented by The WH2.">
-  <meta name="twitter:image" content="https://www.chandankumarthakur.com.np/assets/img/wh2.jpg">
+    content="Day-by-day practical cybersecurity workshop logs at BugXploit, Koteshwor. Documented by The WH2.">
+  <meta name="twitter:image" content="https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg">
 
-  <!-- JSON-LD Schema (Course & Organization) -->
+  <!-- JSON-LD Schema (Course, Organization, Breadcrumbs & Instructors) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Ethical Hacking and Penetration Testing 2-Week Workshop",
-    "courseCode": "BX-EHPT-2026",
-    "description": "2-week hands-on offensive security, network penetration testing, and web application security workshop held at BugXploit in Koteshwor, Kathmandu.",
-    "educationalCredentialAwarded": "Certificate of Completion in Ethical Hacking & Penetration Testing",
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "Onsite",
-      "location": "BugXploit, Koteshwor, Kathmandu, Nepal"
-    },
-    "provider": {
-      "@type": "Organization",
-      "name": "BugXploit",
-      "url": "https://bugxploit.com/",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Koteshwor",
-        "addressRegion": "Kathmandu",
-        "addressCountry": "NP"
-      }
-    },
-    "instructor": [
+    "@graph": [
       {
-        "@type": "Person",
-        "name": "Birendra Sah",
-        "sameAs": "https://www.linkedin.com/in/birendrasah4u2/"
+        "@type": "Course",
+        "@id": "https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/#course",
+        "name": "Ethical Hacking and Penetration Testing 2-Week Workshop",
+        "courseCode": "BX-EHPT-2026",
+        "description": "2-week hands-on offensive security, network penetration testing, and web application security workshop held at BugXploit in Koteshwor, Kathmandu.",
+        "educationalCredentialAwarded": "Certificate of Completion in Ethical Hacking & Penetration Testing",
+        "hasCourseInstance": {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "location": {
+            "@type": "Place",
+            "name": "BugXploit",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Koteshwor",
+              "addressRegion": "Kathmandu",
+              "addressCountry": "NP"
+            }
+          }
+        },
+        "provider": {
+          "@type": "Organization",
+          "name": "BugXploit",
+          "url": "https://bugxploit.com/",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Koteshwor",
+            "addressRegion": "Kathmandu",
+            "addressCountry": "NP"
+          }
+        },
+        "instructor": [
+          {
+            "@type": "Person",
+            "name": "Birendra Sah",
+            "jobTitle": "Lead Cybersecurity Instructor",
+            "sameAs": "https://www.linkedin.com/in/birendrasah4u2/"
+          },
+          {
+            "@type": "Person",
+            "name": "Bishal Shrestha",
+            "jobTitle": "Security Researcher & Red Teamer",
+            "sameAs": "https://www.linkedin.com/in/bishal0x01/"
+          }
+        ],
+        "author": {
+          "@type": "Person",
+          "@id": "https://www.chandankumarthakur.com.np/#person",
+          "name": "Chandan Kumar Thakur",
+          "alternateName": "The WH2",
+          "url": "https://www.chandankumarthakur.com.np/",
+          "sameAs": [
+            "https://www.chandankumarthakur.com.np/",
+            "https://www.linkedin.com/in/thewh2/",
+            "https://github.com/thewh2",
+            "https://www.youtube.com/@thewh2"
+          ]
+        }
       },
       {
-        "@type": "Person",
-        "name": "Bishal Shrestha",
-        "sameAs": "https://www.linkedin.com/in/bishal0x01/"
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Portfolio",
+            "item": "https://www.chandankumarthakur.com.np/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Knowledge Hub",
+            "item": "https://knowledge.chandankumarthakur.com.np/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "BugXploit Workshop",
+            "item": "https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/"
+          }
+        ]
       }
-    ],
-    "author": {
-      "@type": "Person",
-      "name": "Chandan Kumar Thakur",
-      "alternateName": "The WH2",
-      "url": "https://www.chandankumarthakur.com.np/"
-    }
+    ]
   }
   </script>
 
@@ -387,3 +446,5 @@
 </body>
 
 </html>
+
+

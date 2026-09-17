@@ -1,0 +1,60 @@
+﻿# The WH2 Knowledge Hub & Offensive Security Workshops
+> Official technical knowledge base, cybersecurity documentation, and real-world penetration testing workshop logs published by Chandan Kumar Thakur (The WH2).
+
+## Core Identity & Profiles
+- **Author & Researcher:** Chandan Kumar Thakur (The WH2)
+- **Primary Portfolio:** https://www.chandankumarthakur.com.np/
+- **Knowledge Base:** https://knowledge.chandankumarthakur.com.np/
+- **GitHub:** https://github.com/thewh2
+- **LinkedIn:** https://www.linkedin.com/in/thewh2/
+- **YouTube:** https://www.youtube.com/@thewh2
+- **Email:** chandankumarthakur979@gmail.com
+- **Location:** Kathmandu, Nepal
+
+## Workshop Series: BugXploit Ethical Hacking & Penetration Testing
+- **Hub URL:** https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/
+- **Training Institution:** BugXploit (Koteshwor, Kathmandu, Nepal - https://bugxploit.com/)
+- **Lead Instructors:**
+  - Birendra Sah (Cybersecurity Specialist): https://www.linkedin.com/in/birendrasah4u2/
+  - Bishal Shrestha (Security Researcher & Red Teamer): https://www.linkedin.com/in/bishal0x01/
+- **Duration:** 14 Intensive Sessions (Offensive Security & Red Teaming)
+
+## Comprehensive Session Index
+
+### Session 01: Lab Foundations & Bugcrowd Orientation
+- **URL:** https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day1/
+- **Key Concepts:** Type-2 hypervisors (VirtualBox), Kali Linux 2026.1, Metasploitable 2 Linux virtual lab, Host-Only / NAT Network isolation, Nmap host discovery (-sn), ICMP reachability (ping), ifconfig, and Bugcrowd bug bounty target scope definitions.
+
+### Session 02: Service Enumeration & Exploitation
+- **URL:** https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day2/
+- **Key Concepts:** Full-range Nmap TCP scanning (
+map -p- -sV -sC), VSFTPD 2.3.4 Backdoor exploitation (CVE-2011-2523, port 6200 root shell), Telnet cleartext password harvesting, and Metasploit Framework SSH brute-force module (uxiliary/scanner/ssh/ssh_login).
+
+### Session 03: OSINT & Threat Reconnaissance
+- **URL:** https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day3/
+- **Key Concepts:** Passive vs Active Reconnaissance, Bugcrowd Tesla target scope analysis, Google Dorking operators (site:, iletype:, intitle:), DNS enumeration via DNSDumpster, Certificate Transparency log hunting (crt.sh), WHOIS & MXToolbox DNS records, Emkei Fake Mailer header analysis (SPF, DKIM, DMARC), Wayback Machine CDX API crawling, and Shodan IoT reconnaissance.
+
+### Session 04: Command Injection & CSRF Exploitation
+- **URL:** https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day4/
+- **Key Concepts:** OS Command Injection vulnerabilities in Damn Vulnerable Web App (DVWA), chained commands (&&, ;, |), Netcat PHP interactive reverse shells (
+c -lvnp), PHP source code auditing of security.php, Burp Suite HTTP proxy interception, HTTP method conversion (GET to POST), anti-CSRF token bypass, and automated weaponized CSRF exploit generation using CSRFShark.
+
+### Session 05: Intruder Brute-Force, SQLMap & XSS
+- **URL:** https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day5/
+- **Key Concepts:** Burp Suite Intruder Sniper brute-force attacks, SQLMap automated relational database exploitation in Kali Linux (--dbs, -D dvwa --tables, -T users --dump), HTML injection vectors, Reflected XSS (<script>alert(1)</script>), Stored XSS with client-side maxlength DOM bypass, iFrame credential harvesting, and session cookie hijacking exfiltration using Webhook.site.
+
+### Session 06: Automated Auditing & Git Secrets Recon
+- **URL:** https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day6/
+- **Key Concepts:** ProjectDiscovery Nuclei automated vulnerability scanning against Metasploitable 2 with authenticated cookie injection, 69 findings terminal triage (CVE-2012-1823 PHP-CGI execution, Samba 3.0.20 CVE-2026-4480, DistCC CVE-2004-2687, default PostgreSQL blank passwords, VNC RFB logins, missing HTTP security headers), GitHub reconnaissance dorks, streaak/keyhacks safe API key validation (AWS STS, Stripe, Twilio, Google Maps, Slack), iscan.today, Benji Trapp dork list, and TruffleHog git entropy secret scanning.
+
+### Session 07: Android Application Penetration Testing
+- **URL:** https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day7/
+- **Key Concepts:** Android security architecture, Static Code Analysis vs Dynamic Analysis, direct Oracle JDK 26 and JADX-GUI configurations, automated SAST auditing of DivaApplication.apk via Mobile Security Framework (MobSF), Security Score 36/100, Janus vulnerability (CVE-2017-13156), debuggable and allowBackup flags, exported Activities and Content Providers, hardcoded secret extraction, raw SQLite SQL injection vectors, shared library binary security (libdivajni.so NX bit & stack canaries), and manual DEX decompilation with JADX-GUI.
+
+### Session 08: Authentication Flaws & PortSwigger Academy
+- **URL:** https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day8/
+- **Key Concepts:** PortSwigger Web Security Academy Authentication lab deep-dive, Username enumeration via subtle response-length and error message differences using Burp Intruder Sniper, IP rate-limiting bypass through multi-credential JSON array payloads ({"username":"...", "password":[...]}), 2FA simple bypass via flawed session cookie state and forced browsing to /my-account, password reset broken logic via parameter tampering and token stripping, and password reset poisoning via middleware using X-Forwarded-Host header injection to exfiltrate tokens out-of-band.
+
+### Session 09: Web LLM Attacks & Prompt Injection
+- **URL:** https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day9/
+- **Key Concepts:** PortSwigger Web LLM Attacks, Direct Prompt Injection, LLM API exploitation with Excessive Agency, extracting database schema via LLM function calls (Debug SQL tool execution), backend user deletion via LLM SQL injection (Carlos), and Indirect Prompt Injection via product customer reviews to hijack live user LLM assistant sessions and trigger unauthorized API operations.
