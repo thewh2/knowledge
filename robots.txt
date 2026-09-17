@@ -45,3 +45,6 @@ Allow: /
 # Sitemaps & LLM Context Feeds
 Sitemap: https://knowledge.chandankumarthakur.com.np/sitemap.xml
 LLMs-Txt: https://knowledge.chandankumarthakur.com.np/llms.txt
+
+LLMs-Full-Txt: https://knowledge.chandankumarthakur.com.np/llms-full.txt
+
