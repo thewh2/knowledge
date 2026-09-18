@@ -145,4 +145,18 @@
     </image:image>
   </url>
 
+  <!-- ================= Workshop Day 10 ================= -->
+  <url>
+    <loc>https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day10/</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <image:image>
+      <image:loc>https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg</image:loc>
+      <image:title>Day 10: Live Bug Hunting, Target Scope Mapping &amp; Asset Reconnaissance</image:title>
+      <image:caption>BugXploit workshop Day 10 live hunt report (Sony on HackerOne)</image:caption>
+    </image:image>
+  </url>
+
 </urlset>
+

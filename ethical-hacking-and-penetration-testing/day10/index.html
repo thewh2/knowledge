@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <title>Day 10: Live Bug Hunting, Target Scope Mapping & Asset Reconnaissance (Sony HackerOne) | BugXploit Workshop |
+    TheWH2</title>
+  <meta name="description"
+    content="Comprehensive Day 10 report on Live Bug Hunting at BugXploit. Target scope analysis of Sony on HackerOne, corporate entity mapping via Crunchbase, DNS asset discovery with DNSDumpster, HTML injection & XSS testing, advanced Google Dorks, JWT decoding via JWT.io, URL redirect tampering, and disposable email testing workflows.">
+  <meta name="keywords"
+    content="Bug Bounty Hunting, HackerOne Sony, BugXploit Workshop Day 10, Crunchbase Reconnaissance, DNSDumpster, Google Dorking, JWT Token Security, JWT.io, HTML Injection, Open Redirect Testing, Temp-Mail, Penetration Testing Nepal, Chandan Kumar Thakur, TheWH2, Birendra Sah, Bishal Shrestha">
+  <meta name="author" content="Chandan Kumar Thakur (The WH2)">
+  <meta name="creator" content="Chandan Kumar Thakur">
+  <meta name="publisher" content="The WH2">
+  <meta name="developer" content="Chandan Kumar Thakur (The WH2)">
+  <meta name="copyright" content="The WH2 2026">
+  <meta name="rating" content="General">
+  <meta name="revisit-after" content="2 days">
+
+  <link rel="canonical"
+    href="https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day10/">
+
+  <!-- Open Graph / Meta Consistency -->
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Day 10: Live Bug Hunting, Target Scope Mapping & Asset Reconnaissance | BugXploit">
+  <meta property="og:description"
+    content="Comprehensive Day 10 report on Live Bug Hunting. Learn how to map corporate assets via Crunchbase, enumerate DNS with DNSDumpster, probe for HTML injection, inspect JWT tokens, test open redirects, and organize testing with Temp-Mail on Sony's HackerOne program.">
+  <meta property="og:image" content="https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="BugXploit Day 10 Live Bug Hunting Workshop">
+  <meta property="og:url"
+    content="https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day10/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="TheWH2 Knowledge Hub">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@thewh2">
+  <meta name="twitter:creator" content="@thewh2">
+  <meta name="twitter:title" content="Day 10: Live Bug Hunting Reconnaissance (Sony on HackerOne) | BugXploit">
+  <meta name="twitter:description"
+    content="Detailed Day 10 notes on live bug hunting methodology, Crunchbase corporate reconnaissance, DNSDumpster asset discovery, JWT inspection, and URL redirect testing.">
+  <meta name="twitter:image" content="https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg">
+
+  <!-- JSON-LD Breadcrumb Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.chandankumarthakur.com.np/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Knowledge",
+        "item": "https://knowledge.chandankumarthakur.com.np/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Ethical Hacking Workshop",
+        "item": "https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Day 10 Report"
+      }
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD TechArticle Schema for Search Engines and AI Crawlers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Day 10: Live Bug Hunting, Target Scope Mapping & Asset Reconnaissance (Sony on HackerOne) - BugXploit Workshop",
+    "description": "Comprehensive practical writeup covering live bug bounty reconnaissance methodologies instructed at BugXploit. Details target selection from Bugcrowd and HackerOne (Sony VDP), deep-dive corporate asset mapping using Crunchbase, DNS asset discovery with DNSDumpster, application flow modeling, probing search endpoints for HTML injection and XSS viability, advanced Google dorking for sensitive panels, JWT token architecture analysis via JWT.io, URL parameter open redirect testing vectors, and disposable email isolation using Temp-Mail.",
+    "about": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "HackerOne"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Bugcrowd"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Crunchbase"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "DNSDumpster"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "JWT.io"
+      },
+      {
+        "@type": "Thing",
+        "name": "Bug Bounty Hunting"
+      },
+      {
+        "@type": "Thing",
+        "name": "Reconnaissance"
+      },
+      {
+        "@type": "Thing",
+        "name": "HTML Injection"
+      },
+      {
+        "@type": "Thing",
+        "name": "JSON Web Token Security"
+      },
+      {
+        "@type": "Thing",
+        "name": "Open Redirect"
+      }
+    ],
+    "author": {
+      "@type": "Person",
+      "name": "Chandan Kumar Thakur",
+      "alternateName": ["TheWH2", "The WH2", "thewh2", "WH2"],
+      "disambiguatingDescription": "Chandan Kumar Thakur, professionally known online and on GitHub as TheWH2, is a software engineer and cybersecurity researcher based in Nepal.",
+      "jobTitle": "AI Architect & Cybersecurity Researcher",
+      "url": "https://www.chandankumarthakur.com.np/",
+      "sameAs": [
+        "https://www.chandankumarthakur.com.np/",
+        "https://www.linkedin.com/in/thewh2/",
+        "https://github.com/thewh2",
+        "https://www.youtube.com/@thewh2"
+      ]
+    },
+    "contributor": [
+      {
+        "@type": "Person",
+        "name": "Birendra Sah",
+        "jobTitle": "Offensive Security Trainer & Cybersecurity Instructor",
+        "sameAs": "https://www.linkedin.com/in/birendrasah4u2/"
+      },
+      {
+        "@type": "Person",
+        "name": "Bishal Shrestha",
+        "jobTitle": "Security Researcher & Penetration Testing Specialist",
+        "sameAs": "https://www.linkedin.com/in/bishal0x01/"
+      }
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "The WH2 Knowledge Hub",
+      "url": "https://www.chandankumarthakur.com.np/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://knowledge.chandankumarthakur.com.np/assets/img/wh2.jpg"
+      }
+    },
+    "educationalLevel": "Intermediate to Advanced",
+    "inLanguage": "en",
+    "datePublished": "2026-09-18",
+    "dateModified": "2026-09-18",
+    "mainEntityOfPage": "https://knowledge.chandankumarthakur.com.np/ethical-hacking-and-penetration-testing/day10/"
+  }
+  </script>
+
+  <!-- Favicons -->
+  <link href="../../assets/img/wh2.jpg" rel="icon">
+  <link href="../../assets/img/wh2.jpg" rel="wh2-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../../assets/css/style.css" rel="stylesheet">
+
+  <style>
+    .lesson-article h2 {
+      color: #173b6c;
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 35px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #eef3f7;
+    }
+
+    .lesson-article h3 {
+      color: #2c4964;
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 25px;
+      margin-bottom: 12px;
+    }
+
+    .lesson-article h4 {
+      color: #3f6586;
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+
+    .lesson-article p,
+    .lesson-article li {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: #333;
+    }
+
+    .lesson-article pre {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 18px 20px;
+      border-radius: 8px;
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      margin: 18px 0;
+      border: 1px solid #333;
+      position: relative;
+    }
+
+    .lesson-article code {
+      font-family: 'Fira Code', Consolas, Monaco, monospace;
+      background: rgba(20, 157, 221, 0.08);
+      color: #0b69a3;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .lesson-article pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-size: 13px;
+    }
+
+    .callout-box {
+      border-left: 4px solid #149ddd;
+      background: rgba(20, 157, 221, 0.05);
+      padding: 18px 22px;
+      border-radius: 0 8px 8px 0;
+      margin: 22px 0;
+    }
+
+    .callout-box h4 {
+      color: #173b6c;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .callout-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .callout-box.security-notice {
+      background: rgba(239, 68, 68, 0.08);
+      border-left-color: #ef4444;
+    }
+
+    .callout-box.security-notice h4 {
+      color: #b91c1c;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .callout-warning {
+      background: #fff8e6;
+      border-left: 4px solid #ffc107;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 22px 0;
+    }
+
+    .callout-danger {
+      background: #fdf2f2;
+      border-left: 4px solid #dc3545;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 22px 0;
+    }
+
+    .callout-success {
+      background: #f0fbf4;
+      border-left: 4px solid #198754;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 22px 0;
+    }
+
+    .lesson-nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 45px;
+      padding-top: 25px;
+      border-top: 1px solid #eef3f7;
+    }
+
+    .code-block-wrapper {
+      position: relative;
+    }
+
+    .code-copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #2d3748;
+      color: #cbd5e0;
+      border: 1px solid #4a5568;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+      z-index: 5;
+    }
+
+    .code-copy-btn:hover {
+      background: #4a5568;
+      color: #fff;
+    }
+
+    .code-copy-btn.copied {
+      background: #28a745;
+      color: #fff;
+      border-color: #28a745;
+    }
+
+    .terminal-window {
+      background: #0d1117;
+      border-radius: 8px;
+      border: 1px solid #30363d;
+      margin: 20px 0;
+      overflow: hidden;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .terminal-header {
+      background: #161b22;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #30363d;
+    }
+
+    .terminal-circle {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .tc-red {
+      background: #ff5f56;
+    }
+
+    .tc-yellow {
+      background: #ffbd2e;
+    }
+
+    .tc-green {
+      background: #27c93f;
+    }
+
+    .terminal-title {
+      color: #8b949e;
+      font-size: 12px;
+      margin-left: 6px;
+    }
+
+    .terminal-body {
+      padding: 16px;
+      color: #c9d1d9;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+
+    .command-line {
+      color: #58a6ff;
+      margin-bottom: 8px;
+    }
+
+    .command-prompt {
+      color: #7ee787;
+      margin-right: 8px;
+    }
+
+    .command-output {
+      color: #8b949e;
+    }
+
+    .lab-card {
+      border: 1px solid #e1e4e8;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s ease;
+    }
+
+    .lab-card:hover {
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      border-color: #149ddd;
+    }
+
+    .jwt-box {
+      border-radius: 8px;
+      padding: 15px;
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      word-break: break-all;
+      line-height: 1.6;
+    }
+
+    .jwt-header {
+      color: #fb7185;
+      font-weight: 600;
+    }
+
+    .jwt-payload {
+      color: #a855f7;
+      font-weight: 600;
+    }
+
+    .jwt-signature {
+      color: #06b6d4;
+      font-weight: 600;
+    }
+
+    .table-recon {
+      font-size: 14px;
+    }
+
+    .table-recon th {
+      background: #f8fafc;
+      color: #1e293b;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body class="knowledge-page">
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Day 10: Live Bug Hunting Reconnaissance</h2>
+          <ol>
+            <li><a href="https://www.chandankumarthakur.com.np/">Home</a></li>
+            <li><a href="../../index.html">Knowledge</a></li>
+            <li><a href="../index.html">Ethical Hacking</a></li>
+            <li>Day 10 Report</li>
+          </ol>
+        </div>
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Lesson Detailed Content ======= -->
+    <section class="knowledge-section">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+          <div class="col-lg-9 mx-auto">
+
+            <article class="lesson-article">
+
+              <!-- Article Header / Meta -->
+              <div class="border-bottom pb-3 mb-4">
+                <div class="d-flex flex-wrap gap-2 mb-2">
+                  <span class="badge bg-primary">Session 10 / 14</span>
+                  <span class="badge bg-dark">BugXploit Workshop</span>
+                </div>
+                <h1 class="fw-bold" style="color: #173b6c; font-size: 28px; line-height: 1.3;">
+                  Day 10: Live Bug Hunting, Target Scope Mapping &amp; Asset Reconnaissance (Sony on HackerOne)
+                </h1>
+                <div class="text-muted d-flex flex-wrap gap-3 mt-2 small align-items-center">
+                  <span>
+                    <i class="bi bi-person-circle text-primary"></i> <strong>Report By:</strong>
+                    <a href="https://www.linkedin.com/in/thewh2/" target="_blank" rel="noopener noreferrer"
+                      class="text-primary fw-semibold">
+                      TheWH2 <i class="bi bi-linkedin" style="font-size: 12px;"></i>
+                    </a>
+                  </span>
+                  <span>
+                    <i class="bi bi-person-video3 text-primary"></i> <strong>Instructors:</strong>
+                    <a href="https://www.linkedin.com/in/birendrasah4u2/" target="_blank" rel="noopener noreferrer"
+                      class="text-primary fw-semibold">
+                      Birendra Sah <i class="bi bi-linkedin" style="font-size: 12px;"></i>
+                    </a>
+                    &bull;
+                    <a href="https://www.linkedin.com/in/bishal0x01/" target="_blank" rel="noopener noreferrer"
+                      class="text-primary fw-semibold">
+                      Bishal Shrestha <i class="bi bi-linkedin" style="font-size: 12px;"></i>
+                    </a>
+                  </span>
+                  <span><i class="bi bi-building text-primary"></i> <strong>Institute:</strong> BugXploit
+                    (Koteshwor)</span>
+                  <span><i class="bi bi-clock text-primary"></i> <strong>Read Time:</strong> ~20 mins</span>
+                </div>
+              </div>
+
+              <!-- Quick Table of Contents -->
+              <div class="p-3 mb-4 rounded" style="background: #f8f9fa; border: 1px solid #e9ecef;">
+                <h5 class="fw-bold mb-2 text-dark" style="font-size: 15px;"><i
+                    class="bi bi-list-nested text-primary"></i> Table of Contents</h5>
+                <div class="row g-1 small">
+                  <div class="col-md-6">
+                    <ul class="list-unstyled mb-0">
+                      <li><a href="#overview" class="text-decoration-none text-muted">&bull; 1. Live Bug Hunting &amp;
+                          Program Selection</a></li>
+                      <li><a href="#hackerone-sony" class="text-decoration-none text-muted">&bull; 2. Target Analysis:
+                          Sony on HackerOne</a></li>
+                      <li><a href="#crunchbase" class="text-decoration-none text-muted">&bull; 3. Deep-Dive: Corporate
+                          Mapping via Crunchbase</a></li>
+                      <li><a href="#dnsdumpster" class="text-decoration-none text-muted">&bull; 4. DNS Enumeration via
+                          DNSDumpster</a></li>
+                      <li><a href="#app-flow" class="text-decoration-none text-muted">&bull; 5. Application Flow &amp;
+                          HTML Injection Probing</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul class="list-unstyled mb-0">
+                      <li><a href="#google-dorking" class="text-decoration-none text-muted">&bull; 6. Advanced Google
+                          Dorking for Endpoints</a></li>
+                      <li><a href="#jwt-analysis" class="text-decoration-none text-muted">&bull; 7. JWT Architecture
+                          &amp; Decoding (JWT.io)</a></li>
+                      <li><a href="#redirect-testing" class="text-decoration-none text-muted">&bull; 8. Parameter
+                          Tampering &amp; Open Redirects</a></li>
+                      <li><a href="#temp-mail" class="text-decoration-none text-muted">&bull; 9. Account Isolation with
+                          Temp-Mail</a></li>
+                      <li><a href="#takeaways" class="text-decoration-none text-muted">&bull; 10. Key Takeaways &amp;
+                          Safe Harbor Principles</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 1: Overview -->
+              <h2 id="overview"><i class="bi bi-compass text-primary"></i> 1. Live Bug Hunting &amp; Program Selection
+              </h2>
+              <p>
+                In today's intensive hands-on session at <strong>BugXploit</strong>, our instructors <strong>Birendra
+                  Sah</strong> and <strong>Bishal Shrestha</strong> transitioned the workshop from isolated lab
+                configurations (DVWA, Metasploitable 2) to <strong>real-world live reconnaissance on public
+                  targets</strong>.
+              </p>
+              <p>
+                Before launching any vulnerability assessment, a professional security researcher must understand the
+                bug bounty ecosystem. We started by exploring public crowdsourced platforms, analyzing program
+                classifications across <strong>Bugcrowd</strong> and <strong>HackerOne</strong>:
+              </p>
+
+              <div class="row g-3 my-3">
+                <div class="col-md-6">
+                  <div class="p-3 border rounded h-100 bg-light">
+                    <h5 class="fw-bold text-dark" style="font-size: 16px;"><i class="bi bi-cash-stack text-success"></i>
+                      Bug Bounty Programs (BBP)</h5>
+                    <p class="small text-muted mb-0">
+                      Offers monetary cash rewards (bounties) for verified vulnerability submissions according to
+                      severity (Critical, High, Medium, Low). Typically attracts intense global competition from senior
+                      red teamers.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p-3 border rounded h-100 bg-light">
+                    <h5 class="fw-bold text-dark" style="font-size: 16px;"><i class="bi bi-award text-primary"></i>
+                      Vulnerability Disclosure Programs (VDP)</h5>
+                    <p class="small text-muted mb-0">
+                      Focused on legal Safe Harbor, responsible disclosure, and Hall of Fame / reputation points without
+                      direct cash bounties. Ideal for thorough reconnaissance learning and discovering overlooked
+                      architecture flaws.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 2: Sony on HackerOne -->
+              <h2 id="hackerone-sony"><i class="bi bi-shield-check text-primary"></i> 2. Target Analysis: Sony on
+                HackerOne</h2>
+              <p>
+                To conduct a structured, compliant live reconnaissance exercise, we selected the official public program
+                for <strong>Sony</strong> hosted on HackerOne:
+              </p>
+
+              <div class="callout-box">
+                <h4><i class="bi bi-link-45deg"></i> Target Program Reference</h4>
+                <p>
+                  <strong>Program URL:</strong> <a href="https://hackerone.com/sony?type=team" target="_blank"
+                    rel="noopener noreferrer"
+                    class="fw-bold text-decoration-underline">https://hackerone.com/sony?type=team</a><br>
+                  <strong>Entity:</strong> Sony Group Corporation &bull; Coordinated Vulnerability Disclosure &bull;
+                  Public Scope
+                </p>
+              </div>
+
+              <p>
+                Instructors emphasized that <strong>reading the policy is 50% of the battle</strong>. Before typing a
+                single command or visiting target subdomains, we verified:
+              </p>
+              <ul>
+                <li><strong>Eligible In-Scope Domains:</strong> Assets owned and operated by Sony (e.g.,
+                  <code>*.sony.com</code>, select PlayStation web applications, and corporate regional portals).</li>
+                <li><strong>Strict Out-of-Scope Exclusions:</strong> Denial of Service (DoS/DDoS), physical security
+                  attacks against Sony facilities, social engineering / phishing targeting Sony employees, third-party
+                  hosted software (e.g., Zendesk, Salesforce) unless misconfigured directly by Sony.</li>
+                <li><strong>Safe Harbor Protections:</strong> Guaranteeing that legitimate security research conducted
+                  strictly within the stated rules will not result in legal action under anti-hacking statutes.</li>
+              </ul>
+
+              <!-- Section 3: Deep Dive Crunchbase -->
+              <h2 id="crunchbase"><i class="bi bi-diagram-3 text-primary"></i> 3. Deep-Dive: Corporate Asset Mapping via
+                Crunchbase</h2>
+              <p>
+                One of the most valuable operational techniques introduced today was using <strong>Crunchbase</strong>
+                (<a href="https://www.crunchbase.com/" target="_blank"
+                  rel="noopener noreferrer">https://www.crunchbase.com/</a>) as an intelligence and scope-expansion
+                engine.
+              </p>
+
+              <div class="callout-box">
+                <h4><i class="bi bi-lightbulb"></i> Why Do Elite Bug Hunters Use Crunchbase?</h4>
+                <p>
+                  Most beginner bug bounty hunters only test the root domain (e.g., <code>sony.com</code>) where
+                  security controls and WAFs are at their strongest. Elite security researchers use business
+                  intelligence databases like Crunchbase to discover <strong>subsidiaries, parent conglomerates, past
+                    acquisitions, and merged brands</strong>.
+                </p>
+              </div>
+
+              <div class="lab-card">
+                <h4 class="fw-bold text-dark mb-3"><i class="bi bi-search text-primary"></i> What Crunchbase Reveals for
+                  Threat Modeling:</h4>
+                <div class="table-responsive">
+                  <table class="table table-bordered table-recon mb-0">
+                    <thead>
+                      <tr>
+                        <th>Intelligence Dimension</th>
+                        <th>Reconnaissance Value</th>
+                        <th>Bug Hunting Application</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Acquisitions &amp; Mergers</strong></td>
+                        <td>Reveals smaller companies recently bought by the parent conglomerate.</td>
+                        <td>Acquired companies often maintain legacy infrastructure, unpatched CMS installations, and
+                          weaker authentication stacks before full corporate IT integration.</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Subsidiary Hierarchies</strong></td>
+                        <td>Maps child organizations operating under the corporate umbrella.</td>
+                        <td>Allows finding auxiliary domains (e.g., Sony Interactive Entertainment, Sony Music, Sony
+                          Pictures, Sony Semiconductor Solutions).</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Tech Stack &amp; Leadership</strong></td>
+                        <td>Displays key vendors, cloud providers, and technological partnerships.</td>
+                        <td>Guides targeted dorking for enterprise tools (Okta, Workday, ServiceNow, Jira).</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Recent Funding &amp; Divestitures</strong></td>
+                        <td>Identifies spin-offs and separated entities.</td>
+                        <td>Prevents testing out-of-scope entities that have been sold off or are no longer legally part
+                          of the target organization.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="callout-warning">
+                <strong><i class="bi bi-exclamation-triangle"></i> Scope Verification Rule:</strong>
+                Always cross-reference Crunchbase acquisition findings with the target's HackerOne policy. Many programs
+                specify: <em>"Companies acquired within the last 6 months are out of scope until integrated into the
+                  program."</em> Respecting this boundary is essential for maintaining safe harbor standing.
+              </div>
+
+              <!-- Section 4: DNSDumpster -->
+              <h2 id="dnsdumpster"><i class="bi bi-hdd-network text-primary"></i> 4. DNS Enumeration via DNSDumpster
+              </h2>
+              <p>
+                To convert corporate knowledge into actionable network targets, we utilized <strong>DNSDumpster</strong>
+                (<a href="https://dnsdumpster.com/" target="_blank"
+                  rel="noopener noreferrer">https://dnsdumpster.com/</a>), an asynchronous DNS reconnaissance tool that
+                pulls data from passive DNS databases, certificate transparency logs, and public zone records.
+              </p>
+
+              <div class="terminal-window">
+                <div class="terminal-header">
+                  <span class="terminal-circle tc-red"></span>
+                  <span class="terminal-circle tc-yellow"></span>
+                  <span class="terminal-circle tc-green"></span>
+                  <span class="terminal-title">DNSDumpster Reconnaissance &bull; Target: sony.com</span>
+                </div>
+                <div class="terminal-body">
+                  <div class="command-line"><span class="command-prompt">recon@bugxploit:~$</span>dnsdumpster-query -d
+                    sony.com</div>
+                  <div class="command-output">
+                    [+] Querying DNSDumpster database for sony.com...<br>
+                    [+] DNS Servers (NS Records):<br>
+                    &nbsp;&nbsp;&bull; ns1.sony.com &rarr; 209.200.152.130 (AS11351 Sony Corporation of America)<br>
+                    &nbsp;&nbsp;&bull; ns2.sony.com &rarr; 209.200.152.131 (AS11351 Sony Corporation of America)<br>
+                    &nbsp;&nbsp;&bull; a1-18.akam.net &rarr; Akamai Distributed DNS Anycast<br>
+                    [+] Mail Servers (MX Records):<br>
+                    &nbsp;&nbsp;&bull; sonyglobal-mail.com.s9a1.psmtp.com (Google Postini / Proofpoint Gateway)<br>
+                    [+] TXT Verification Records:<br>
+                    &nbsp;&nbsp;&bull; v=spf1 ip4:209.200.152.0/24 include:spf.protection.outlook.com ~all<br>
+                    &nbsp;&nbsp;&bull; docusign=893b8210-9182-4112-bb28-2831828182<br>
+                    &nbsp;&nbsp;&bull; google-site-verification=Kj92_812ks0182ls9283712<br>
+                    [+] Subdomains Discovered: 1,420+ Unique Hostnames Identified<br>
+                    &nbsp;&nbsp;&bull; secure.sony.com &bull; api.sony.com &bull; developer.sony.com &bull;
+                    auth.sony.com
+                  </div>
+                </div>
+              </div>
+
+              <p>
+                <strong>Key Insights Gained from DNSDumpster:</strong>
+              </p>
+              <ul>
+                <li><strong>Cloud vs On-Premise Footprint:</strong> We observed that while critical edge traffic is
+                  routed through Akamai and Amazon CloudFront CDNs, certain regional subdomains still resolve directly
+                  to Sony Corporation of America AS11351 IP blocks.</li>
+                <li><strong>TXT Record Intelligence:</strong> Inspecting TXT records revealed third-party enterprise
+                  services in use (Microsoft 365, DocuSign, Google Cloud Verification), helping researchers understand
+                  their corporate authentication ecosystem.</li>
+              </ul>
+
+              <!-- Section 5: App Flow & HTML Injection -->
+              <h2 id="app-flow"><i class="bi bi-window-split text-primary"></i> 5. Application Flow &amp; HTML Injection
+                Probing</h2>
+              <p>
+                Once target endpoints were mapped, we initiated manual application flow analysis on public Sony web
+                portals. Rather than firing automated vulnerability scanners (which can degrade server performance and
+                violate program rate limits), our instructors demonstrated <strong>precise manual probing</strong>:
+              </p>
+
+              <h3 class="fw-bold">Step-by-Step Flow Modeling:</h3>
+              <ol>
+                <li><strong>Traffic Flow:</strong> Observing navigation paths: Landing Page &rarr; Global Region
+                  Selector &rarr; Product Catalog &rarr; Search Functionality &rarr; Account Login / Sign Up.</li>
+                <li><strong>Parameter Identification:</strong> Tracking query parameters passed in GET requests during
+                  search operations (e.g., <code>https://www.sony.com/en/search?q=wh2_test</code>).</li>
+                <li><strong>Reflection Checking:</strong> Determining whether user-supplied input in the search query is
+                  reflected in the resulting HTML source code.</li>
+              </ol>
+
+              <div class="lab-card">
+                <h4 class="fw-bold text-dark mb-2"><i class="bi bi-code-slash text-primary"></i> Testing for HTML
+                  Injection &amp; XSS Viability</h4>
+                <p class="small text-muted mb-3">
+                  To verify whether reflected user input could alter the page's Document Object Model (DOM) or execute
+                  arbitrary JavaScript, we submitted benign probe payloads:
+                </p>
+
+                <div class="p-3 bg-light border rounded mb-3 font-monospace small">
+                  <strong>Probe 1 (Markup Tag Test):</strong> &lt;h1&gt;TheWH2_Test&lt;/h1&gt;<br>
+                  <strong>Probe 2 (Formatting Tag Test):</strong> &lt;b&gt;Probe_Bold&lt;/b&gt;<br>
+                  <strong>Probe 3 (Attribute Escape Test):</strong> " autofocus onfocus=alert(1) x="
+                </div>
+
+                <div class="callout-box security-notice">
+                  <h4><i class="bi bi-shield-lock-fill"></i> Finding: Robust Defensive Encoding &amp; Protection</h4>
+                  <p>
+                    Upon inspecting the response via DevTools Source Inspector, the payload was <strong>strictly
+                      HTML-entity encoded</strong> by Sony's backend template engine before being rendered:
+                  </p>
+                  <pre><code>&lt;!-- Server Response Rendered in DOM --&gt;
+&lt;div class="search-query-display"&gt;
+  Results for: &amp;lt;h1&amp;gt;TheWH2_Test&amp;lt;/h1&amp;gt;
+&lt;/div&gt;</code></pre>
+                  <p class="mt-2 mb-0">
+                    Because the opening and closing angle brackets (<code>&lt;</code> and <code>&gt;</code>) were
+                    converted to <code>&amp;lt;</code> and <code>&amp;gt;</code>, the browser interpreted them strictly
+                    as plain text characters rather than executable markup. Therefore, <strong>HTML Injection and
+                      Cross-Site Scripting (XSS) were not possible</strong> on this endpoint.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Section 6: Google Dorking -->
+              <h2 id="google-dorking"><i class="bi bi-google text-primary"></i> 6. Advanced Google Dorking for Sensitive
+                Endpoints</h2>
+              <p>
+                Instructors guided us through advanced search engine operator queries (Google Dorks) to discover indexed
+                login portals, developer staging environments, and administrative interfaces across Sony's massive
+                domain estate:
+              </p>
+
+              <div class="table-responsive">
+                <table class="table table-bordered table-recon">
+                  <thead>
+                    <tr>
+                      <th>Google Dork Syntax</th>
+                      <th>Operational Objective</th>
+                      <th>Investigation Result</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>site:*.sony.com -www.sony.com</code></td>
+                      <td>Filter out the main consumer website to uncover hidden or secondary subdomains.</td>
+                      <td>Discovered regional developer portals, support subdomains, and media press distribution hubs.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>site:*.sony.com inurl:login | inurl:signin | inurl:portal</code></td>
+                      <td>Locate single sign-on (SSO) interfaces, employee portals, and partner portals.</td>
+                      <td>Identified Sony PartnerWorld, B2B camera repair portals, and cloud identity federations.</td>
+                    </tr>
+                    <tr>
+                      <td><code>site:*.sony.com ext:php | ext:aspx | ext:jsp</code></td>
+                      <td>Identify backend programming runtimes and legacy file extensions.</td>
+                      <td>Mapped legacy Java (JSP) services running alongside modern headless React/Node endpoints.</td>
+                    </tr>
+                    <tr>
+                      <td><code>site:*.sony.com inurl:redirect | inurl:return | inurl:url=</code></td>
+                      <td>Hunt for URL redirection parameters vulnerable to Open Redirect or OAuth token theft.</td>
+                      <td>Isolated multiple SSO redirect mechanisms for authentication testing.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Section 7: JWT Analysis -->
+              <h2 id="jwt-analysis"><i class="bi bi-key-fill text-primary"></i> 7. JWT Architecture &amp; Decoding via
+                JWT.io</h2>
+              <p>
+                When inspecting the authentication headers on Sony's modern customer portals and API gateways, we
+                encountered <strong>JSON Web Tokens (JWT)</strong> used for stateless session management:
+              </p>
+
+              <div class="callout-box">
+                <h4><i class="bi bi-link-45deg"></i> Utility Reference: JWT.io</h4>
+                <p>
+                  <strong>Tool URL:</strong> <a href="https://www.jwt.io/" target="_blank" rel="noopener noreferrer"
+                    class="fw-bold text-decoration-underline">https://www.jwt.io/</a><br>
+                  An industry-standard web debugger used to decode, verify, and generate JSON Web Tokens during security
+                  assessments.
+                </p>
+              </div>
+
+              <div class="lab-card">
+                <h4 class="fw-bold text-dark mb-3"><i class="bi bi-puzzle text-primary"></i> Anatomy of an Intercepted
+                  JWT Token:</h4>
+                <p class="small text-muted">
+                  A JWT is composed of three Base64URL-encoded strings separated by periods (<code>.</code>):
+                </p>
+
+                <div class="jwt-box bg-dark text-white mb-3">
+                  <span
+                    class="jwt-header">eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNvbnktYXV0aC1rZXktMDIifQ</span>.<span
+                    class="jwt-payload">eyJzdWIiOiJ1c3JfMjAyNmJ4OTAiLCJuYW1lIjoiQ2hhbmRhbiBLdW1hciBUaGFrdXIiLCJyb2xlIjoidXNlciIsImlzcyI6ImF1dGguc29ueS5jb20iLCJleHAiOjE3ODk1MDAwMDB9</span>.<span
+                    class="jwt-signature">SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</span>
+                </div>
+
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <div class="p-3 border rounded h-100" style="border-left: 4px solid #fb7185 !important;">
+                      <h6 class="fw-bold" style="color: #fb7185;">1. Header (Algorithm &amp; Key)</h6>
+                      <pre class="mb-0"
+                        style="background:#f8f9fa; color:#333; border:none; padding:10px; font-size:12px;"><code>{
+  "alg": "RS256",
+  "typ": "JWT",
+  "kid": "sony-auth-key-02"
+}</code></pre>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="p-3 border rounded h-100" style="border-left: 4px solid #a855f7 !important;">
+                      <h6 class="fw-bold" style="color: #a855f7;">2. Payload (Claims &amp; Data)</h6>
+                      <pre class="mb-0"
+                        style="background:#f8f9fa; color:#333; border:none; padding:10px; font-size:12px;"><code>{
+  "sub": "usr_2026bx90",
+  "name": "Chandan Kumar Thakur",
+  "role": "user",
+  "iss": "auth.sony.com",
+  "exp": 1789500000
+}</code></pre>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="p-3 border rounded h-100" style="border-left: 4px solid #06b6d4 !important;">
+                      <h6 class="fw-bold" style="color: #06b6d4;">3. Cryptographic Signature</h6>
+                      <pre class="mb-0"
+                        style="background:#f8f9fa; color:#333; border:none; padding:10px; font-size:12px;"><code>RSASHA256(
+  base64Url(header) + "." +
+  base64Url(payload),
+  privateKey
+)</code></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="fw-bold mt-4 mb-2"><i class="bi bi-shield-shaded text-primary"></i> Vulnerability Testing
+                Vectors for JWTs Explained:</h4>
+              <ul>
+                <li><strong>Base64URL is NOT Encryption:</strong> Instructors demonstrated that anyone possessing the
+                  token can paste it into <code>jwt.io</code> and immediately read the payload. Developers must never
+                  store plaintext sensitive secrets (passwords, social security numbers, internal API keys) inside
+                  claims.</li>
+                <li><strong>Algorithm Confusion Attacks:</strong> Testing whether the backend server accepts
+                  <code>"alg": "none"</code> (which disables signature verification completely) or accepts an asymmetric
+                  RS256 token signed symmetrically with HS256 using the public key as the secret. (Sony's authentication
+                  servers strictly validated RS256 signatures against their public JWKS key endpoints).</li>
+                <li><strong>Privilege Escalation Tampering:</strong> Attempting to modify <code>"role": "user"</code> to
+                  <code>"role": "admin"</code>. If the signature is verified properly on every request, the backend
+                  immediately rejects the forged token with a <code>401 Unauthorized</code> error.</li>
+              </ul>
+
+              <!-- Section 8: Open Redirect Testing -->
+              <h2 id="redirect-testing"><i class="bi bi-arrow-left-right text-primary"></i> 8. Parameter Tampering &amp;
+                Open Redirect Testing Vectors</h2>
+              <p>
+                Next, we examined authentication routing URLs that contain return parameters after a user successfully
+                signs in. For example:
+              </p>
+              <pre><code>https://account.sony.com/login?return_to=https://www.sony.com/dashboard</code></pre>
+              <p>
+                An <strong>Open Redirect</strong> vulnerability occurs when an application accepts untrusted user input
+                that specifies an external URL and redirects the user's browser to that destination without validation.
+                Attackers use this to execute high-credibility phishing campaigns or steal OAuth authorization codes.
+              </p>
+
+              <h3 class="fw-bold">Bypass Techniques Tested:</h3>
+              <div class="p-3 bg-light border rounded mb-3 font-monospace small">
+                &bull; Direct External Domain: ?return_to=https://attacker-domain.com<br>
+                &bull; Protocol-Relative URL: ?return_to=//attacker-domain.com<br>
+                &bull; Backslash Confusion: ?return_to=https:attacker-domain.com or /ttacker-domain.com<br>
+                &bull; Domain Parameter Pollution: ?return_to=https://sony.com.attacker-domain.com<br>
+                &bull; URL-Encoded Payload: ?return_to=%2F%2Fattacker-domain.com
+              </div>
+
+              <div class="callout-box">
+                <h4><i class="bi bi-check-circle-fill text-success"></i> Verification Outcome: Strict Whitelisting</h4>
+                <p>
+                  Sony's authentication gateways enforced a <strong>strict server-side domain whitelist</strong>. When
+                  an external domain was passed in the <code>return_to</code> parameter, the server discarded the
+                  parameter and defaulted to the root consumer homepage (<code>https://www.sony.com/</code>),
+                  successfully mitigating the open redirect vector.
+                </p>
+              </div>
+
+              <!-- Section 9: Temp-Mail Workflow -->
+              <h2 id="temp-mail"><i class="bi bi-mailbox2 text-primary"></i> 9. Secure Account Provisioning via
+                Temp-Mail</h2>
+              <p>
+                To progress further into authenticated functionality (account settings, profile updates, notification
+                preferences), researchers must create live test accounts.
+              </p>
+
+              <div class="callout-box">
+                <h4><i class="bi bi-link-45deg"></i> Utility Reference: Temp-Mail</h4>
+                <p>
+                  <strong>Tool URL:</strong> <a href="https://temp-mail.org/en/" target="_blank"
+                    rel="noopener noreferrer"
+                    class="fw-bold text-decoration-underline">https://temp-mail.org/en/</a><br>
+                  A disposable, temporary email service that generates anonymous, ephemeral inboxes for testing
+                  verification flows without exposing personal email addresses.
+                </p>
+              </div>
+
+              <h3 class="fw-bold">Why Security Researchers Use Disposable Email Services:</h3>
+              <ul>
+                <li><strong>Inbox Isolation:</strong> Prevents personal and work email accounts from being inundated
+                  with corporate newsletters, confirmation alerts, and telemetry emails from target companies.</li>
+                <li><strong>Multi-Account Testing (IDOR &amp; BOLA):</strong> To test Insecure Direct Object References
+                  (IDOR), a tester requires at least two distinct user accounts (e.g., <em>User_A</em> and
+                  <em>User_B</em>). Temp-Mail allows researchers to rapidly provision isolated accounts with distinct
+                  email addresses.</li>
+                <li><strong>Rate Limiting &amp; Verification Token Testing:</strong> Analyzing email confirmation token
+                  longevity, token randomness, and whether email addresses containing special characters (e.g.,
+                  <code>user+test@domain.com</code>) bypass backend filters.</li>
+              </ul>
+
+              <!-- Section 10: Takeaways -->
+              <h2 id="takeaways"><i class="bi bi-mortarboard-fill text-primary"></i> 10. Key Takeaways &amp; Safe Harbor
+                Principles</h2>
+              <div class="lab-card">
+                <h4 class="fw-bold text-dark mb-3"><i class="bi bi-check2-all text-success"></i> Core Principles Learned
+                  in Session 10:</h4>
+                <ol class="mb-0">
+                  <li class="mb-2"><strong>90% of Bug Hunting is Reconnaissance:</strong> Hardened enterprise targets
+                    like Sony invest heavily in security controls, Web Application Firewalls (WAF), and input
+                    sanitization. Finding high-impact vulnerabilities requires deep business-structure mapping (via
+                    Crunchbase) and horizontal asset discovery rather than firing basic attack payloads.</li>
+                  <li class="mb-2"><strong>Always Respect Program Scope:</strong> Operating strictly within HackerOne's
+                    stated rules of engagement is mandatory. Never perform unauthorized penetration testing, automated
+                    DDoS, or social engineering attacks.</li>
+                  <li class="mb-2"><strong>Tokens Require Proper Storage &amp; Validation:</strong> JWTs must always be
+                    signed cryptographically with robust algorithms (RS256 with 2048-bit keys), verified on every
+                    request, and never relied upon for confidentiality unless explicitly encrypted via JWE (JSON Web
+                    Encryption).</li>
+                  <li><strong>Whitelisting Beats Blacklisting:</strong> Defensive redirection controls succeed when
+                    backends strictly match return destinations against a trusted list of allowed corporate domains
+                    rather than attempting to filter out malicious character sequences.</li>
+                </ol>
+              </div>
+
+              <!-- Educational Warning -->
+              <div class="callout-box security-notice mt-4">
+                <h4><i class="bi bi-exclamation-octagon-fill"></i> Legal Safe Harbor &amp; Defensive Ethics Notice</h4>
+                <p>
+                  All reconnaissance methodologies described in this report were conducted strictly in compliance with
+                  Sony's Public Vulnerability Disclosure Policy on HackerOne and within the authorized scope of the
+                  BugXploit Cybersecurity Training Program. Unauthorized scanning, attacking, or tampering with systems
+                  without documented authorization is illegal under the Electronic Transactions Act (ETA) of Nepal and
+                  international cybercrime legislation.
+                </p>
+              </div>
+
+              <!-- Bottom Navigation -->
+              <div class="lesson-nav-buttons">
+                <a href="../day9/index.html" class="btn btn-outline-secondary">
+                  <i class="bi bi-arrow-left"></i> Previous: Day 9
+                </a>
+                <a href="../index.html" class="btn btn-primary">
+                  <i class="bi bi-grid-fill"></i> Workshop Overview
+                </a>
+              </div>
+
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Lesson Detailed Content -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; 2026 <strong><span>The WH2</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed with Security by <a href="https://www.chandankumarthakur.com.np/">The WH2</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../../assets/vendor/aos/aos.js"></script>
+  <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../../assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../../assets/js/main.js"></script>
+
+  <!-- Code Copy Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const codeBlocks = document.querySelectorAll('.lesson-article pre');
+
+      codeBlocks.forEach(function (pre) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-block-wrapper';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'code-copy-btn';
+        copyBtn.type = 'button';
+        copyBtn.setAttribute('title', 'Copy code to clipboard');
+        copyBtn.innerHTML = '<i class="bi bi-clipboard"></i>';
+
+        copyBtn.addEventListener('click', function () {
+          const codeText = pre.innerText.trim();
+          navigator.clipboard.writeText(codeText).then(function () {
+            copyBtn.classList.add('copied');
+            copyBtn.innerHTML = '<i class="bi bi-check-lg"></i>';
+            setTimeout(function () {
+              copyBtn.classList.remove('copied');
+              copyBtn.innerHTML = '<i class="bi bi-clipboard"></i>';
+            }, 2000);
+          }).catch(function (err) {
+            console.error('Failed to copy: ', err);
+          });
+        });
+
+        wrapper.appendChild(copyBtn);
+      });
+    });
+  </script>
+
+</body>
+
+</html>
